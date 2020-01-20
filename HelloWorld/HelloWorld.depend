@@ -1,0 +1,4 @@
+# depslib dependency file v1.0
+1579552739 source:/home/cross/git/Assembler/HelloWorld/main.cpp
+	<iostream>
+

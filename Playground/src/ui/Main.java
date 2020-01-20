@@ -11,7 +11,6 @@ import java.util.Scanner;
  *
  */
 public class Main {
-
 	/**
 	 * @param args
 	 */
@@ -30,10 +29,6 @@ public class Main {
 		} else {
 			System.out.println("You entered something different");
 		}
-
 		keyboard.close();
-		// TODO Add more stuff.
-
 	}
-
 }
