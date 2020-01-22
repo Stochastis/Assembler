@@ -1,0 +1,4 @@
+# depslib dependency file v1.0
+1579725681 source:/home/cross/git/Assembler/Sequencer/main.cpp
+	<iostream>
+
