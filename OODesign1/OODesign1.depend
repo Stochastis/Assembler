@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1579898630 source:/home/cross/git/Assembler/OODesign1/src/Circuit.cpp
+	"Circuit.h"
+	"Circuit.h"
+
+1579898892 /home/cross/git/Assembler/OODesign1/include/Circuit.h
+
+1579898673 source:/home/cross/git/Assembler/OODesign1/main.cpp
+	<iostream>
+	"Circuit.h"
+	"Circuit.h"
+
