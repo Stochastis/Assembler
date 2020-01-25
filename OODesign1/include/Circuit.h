@@ -7,12 +7,16 @@ class Circuit
         Circuit();
         virtual ~Circuit();
 
-        double Getvoltage() { return voltage; }
-        void Setvoltage( double val) { voltage = val; }
-        double Getresistance() { return resistance; }
-        void Setresistance( double val) { resistance = val; }
-        double Getamperage() { return amperage; }
-        void Setamperage( double val) { amperage = val; }
+        double getVoltage() { return voltage; }
+        void setVoltage( double val) { voltage = val; }
+        double getResistance() { return resistance; }
+        void setResistance( double val) { resistance = val; }
+        double getAmperage() { return amperage; }
+        void setAmperage( double val) { amperage = val; }
+
+        void calculateVoltage(){voltage = resistance * amperage}
+        void calculateAmperage(){amperage = voltage / resistance}
+        void calculateResistance(){resistance = voltage / amperage}
 
     protected:
 
