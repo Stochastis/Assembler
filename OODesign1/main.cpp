@@ -8,7 +8,7 @@ int main()
     string userChoice;
     double userInput;
     double output;
-    Circuit myCircuit = new Circuit();
+    Circuit myCircuit;
 
     cout << "Would you like to calculate amperage, resistance, or voltage?" << endl;
     cout << "Enter 1) for amperage, 2) for resistance, or 3) for voltage." << endl;
@@ -31,17 +31,21 @@ int main()
         cout << "The amperage of your circuit is " << myCircuit.getAmperage() << "." << endl;
     } else if (userChoice == "2") {
         cout << "Please enter the amperage of the circuit." << endl;
-        cin >> amperage;
+        cin >> userInput;
+        myCircuit.setAmperage(userInput);
         cout << "Please enter the voltage of the circuit." << endl;
-        cin >> voltage;
-        resistance = voltage / amperage;
-        cout << "The resistance of your circuit is " << resistance << "." << endl;
+        cin >> userInput;
+        myCircuit.setVoltage(userInput);
+        myCircuit.calculateResistance();
+        cout << "The resistance of your circuit is " << myCircuit.getResistance() << "." << endl;
     } else if (userChoice == "3"){
         cout << "Please enter the amperage of the circuit." << endl;
-        cin >> amperage;
+        cin >> userInput;
+        myCircuit.setAmperage(userInput);
         cout << "Please enter the resistance of the circuit." << endl;
-        cin >> resistance;
-        voltage = amperage * resistance;
-        cout << "The voltage of your circuit is " << voltage << "." << endl;
+        cin >> userInput;
+        myCircuit.setResistance(userInput);
+        myCircuit.calculateVoltage();
+        cout << "The voltage of your circuit is " << myCircuit.getVoltage() << "." << endl;
     }
 }
