@@ -1,5 +1,4 @@
 #include "Circuit.h"
-#include "Circuit.h"
 
 Circuit::Circuit()
 {

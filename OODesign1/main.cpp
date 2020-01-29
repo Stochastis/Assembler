@@ -6,8 +6,7 @@ using namespace std;
 int main()
 {
     string userChoice;
-    double userInput;
-    double output;
+    double userInput, output;
     Circuit myCircuit;
 
     cout << "Would you like to calculate amperage, resistance, or voltage?" << endl;

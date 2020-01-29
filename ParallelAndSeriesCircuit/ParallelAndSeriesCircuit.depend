@@ -1,9 +1,10 @@
 # depslib dependency file v1.0
-1514140574 source:c:\users\caleb\git\assembler\parallelandseriescircuit\main.cpp
+1580157303 source:c:\users\caleb\git\assembler\parallelandseriescircuit\main.cpp
 	<iostream>
-
-1580157249 source:c:\users\caleb\git\assembler\parallelandseriescircuit\src\circuit.cpp
 	"Circuit.h"
 
-1580157289 c:\users\caleb\git\assembler\parallelandseriescircuit\include\circuit.h
+1580275501 source:c:\users\caleb\git\assembler\parallelandseriescircuit\src\circuit.cpp
+	"Circuit.h"
+
+1580276096 c:\users\caleb\git\assembler\parallelandseriescircuit\include\circuit.h
 
