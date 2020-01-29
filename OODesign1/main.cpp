@@ -14,7 +14,7 @@ int main()
 
     cin >> userChoice;
 
-    while ((userChoice != "1") && (userChoice != "2") && userChoice != "3"){
+    while ((userChoi ce != "1") && (userChoice != "2") && userChoice != "3"){
         cout << "Please enter 1), 2), or 3)." << endl;
         cin >> userChoice;
     }

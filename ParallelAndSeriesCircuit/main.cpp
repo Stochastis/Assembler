@@ -16,5 +16,5 @@ int main()
     while ((userInput != 1) && (userInput != 1)){
         cout << "Please enter 1) or 2)." << endl;
         cin >> userInput;
-    }
+    } myCircuit.CircuitType = userInput;
 }
