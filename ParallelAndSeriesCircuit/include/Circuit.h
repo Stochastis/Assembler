@@ -10,13 +10,13 @@ class Circuit
         unsigned int CircuitType;
         double* Resistances;
         double TotalResistance();
+        int NumberOfResistors;
 
     protected:
 
     private:
         double SeriesResistance();
         double ParallelResistance();
-        int NumberOfResistors;
 };
 
 #endif // CIRCUIT_H

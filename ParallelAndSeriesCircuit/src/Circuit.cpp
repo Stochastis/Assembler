@@ -12,13 +12,23 @@ Circuit::~Circuit()
 }
 
 double Circuit::SeriesResistance(){
-
+    double runningTotal = 0;
+    for (int i = 0; i < NumberOfResistors; i++){
+        runningTotal += Resistances[i];
+    }
+    return runningTotal;
 }
 
 double Circuit::ParallelResistance(){
-
+    double runningTotal = 0;
+    for (int i = 0; i < NumberOfResistors; i++){
+        runningTotal += (1 / Resistances[i]);
+    }
+    runningTotal = 1 / runningTotal;
+    return runningTotal;
 }
 
 double Circuit::TotalResistance(){
-
+    if (CircuitType == 1) {return ParallelResistance();}
+    else {return SeriesResistance();}
 }
