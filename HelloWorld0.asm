@@ -1,21 +1,19 @@
-       segment .data
-msg:   db      'Hello World!',0x0a     ; String to print
-len:   equ     $-msg                   ; String length
+section     .text
+global      main                              ;must be declared for linker (ld)
 
-       segment .text
-       global  main                    ; Tell linker about main
-       extern  write, exit
-main:
-       push    rbp
-       mov     rbp, rsp
-                                       ; Up to 4 register parameters
-                                       ; in rcx, rdx, r8, r9
-       mov     r8, len                 ; Parameter 3 for write
-       lea     rdx, [msg]              ; Parameter 2 for write
-       mov     ecx, 1                  ; Parameter 1 (fd)
-       sub     rsp, 32                 ; Must leave room for 4 register params
-       call    write
-       add     rsp, 32                 ; Revise stack (silly in this program)
-       xor     ecx, ecx                ; 0 return = success
-       sub     rsp, 32                 ; Must leave room for 4 register params
-       call    exit
+main:                                         ;tell linker entry point
+
+    mov     edx,len                             ;message length
+    mov     ecx,msg                             ;message to write
+    mov     ebx,1                               ;file descriptor (stdout)
+    mov     eax,4                               ;system call number (sys_write)
+    int     0x80                                ;call kernel
+
+    mov     eax,1                               ;system call number (sys_exit)
+    int     0x80                                ;call kernel
+
+section     .data
+
+msg     db  'Hello, world!',0xa                 ;our dear string
+len     equ $ - msg   
+

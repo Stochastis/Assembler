@@ -1502,25 +1502,23 @@
    626                              <1> %rotate 1
    627                              <1> %endrep
    628                              <1> %endmacro
-     1                                         segment .data
-     2 00000000 48656C6C6F20576F72-     msg:   db      'Hello World!',0x0a     ; String to print
-     2 00000009 6C64210A           
-     3                                  len:   equ     $-msg                   ; String length
-     4                                  
-     5                                         segment .text
-     6                                         global  main                    ; Tell linker about main
-     7                                         extern  write, exit
-     8                                  main:
-     9 00000000 55                             push    rbp
-    10 00000001 4889E5                         mov     rbp, rsp
-    11                                                                         ; Up to 4 register parameters
-    12                                                                         ; in rcx, rdx, r8, r9
-    13 00000004 41B80D000000                   mov     r8, len                 ; Parameter 3 for write
-    14 0000000A 488D1425[00000000]             lea     rdx, [msg]              ; Parameter 2 for write
-    15 00000012 B901000000                     mov     ecx, 1                  ; Parameter 1 (fd)
-    16 00000017 4883EC20                       sub     rsp, 32                 ; Must leave room for 4 register params
-    17 0000001B E8(00000000)                   call    write
-    18 00000020 4883C420                       add     rsp, 32                 ; Revise stack (silly in this program)
-    19 00000024 31C9                           xor     ecx, ecx                ; 0 return = success
-    20 00000026 4883EC20                       sub     rsp, 32                 ; Must leave room for 4 register params
-    21 0000002A E8(00000000)                   call    exit
+     1                                  section     .text
+     2                                  global      main                              ;must be declared for linker (ld)
+     3                                  
+     4                                  main:                                         ;tell linker entry point
+     5                                  
+     6 00000000 BA0E000000                  mov     edx,len                             ;message length
+     7 00000005 B9[00000000]                mov     ecx,msg                             ;message to write
+     8 0000000A BB01000000                  mov     ebx,1                               ;file descriptor (stdout)
+     9 0000000F B804000000                  mov     eax,4                               ;system call number (sys_write)
+    10 00000014 CD80                        int     0x80                                ;call kernel
+    11                                  
+    12 00000016 B801000000                  mov     eax,1                               ;system call number (sys_exit)
+    13 0000001B CD80                        int     0x80                                ;call kernel
+    14                                  
+    15                                  section     .data
+    16                                  
+    17 00000000 48656C6C6F2C20776F-     msg     db  'Hello, world!',0xa                 ;our dear string
+    17 00000009 726C64210A         
+    18                                  len     equ $ - msg   
+    19                                  
