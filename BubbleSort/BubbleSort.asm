@@ -1,6 +1,6 @@
     segment .data
-numbersToSort   dq  32, -1, -2, 99, 1, 32, 0, 100     ;Create array of numbers to sort
-listSize        dq  8                                   ;Set the size of the array
+numbersToSort   dq  10, 9, 8, 7, 6, 5, 4, 3, 2, 1       ;Create array of numbers to sort
+listSize        dq  10                                   ;Set the size of the array
 
     segment .text
     global main                         ;Tell linker about main
@@ -34,12 +34,12 @@ greaterThan:
     xchg rbx, rcx
     mov [rax+rdx], rbx
     mov [rax+rdx+8], rcx
-    loop checkCount
+    jmp checkCount
     
 notEnd:
 
     add rdx, 8
-    loop compare
+    jmp compare
     
 end:
 
@@ -47,7 +47,8 @@ end:
     je finish
     xor rdi, rdi
     xor rdx, rdx
-    loop compare
+    sub rsi, 8
+    jmp compare
     
 finish:
 

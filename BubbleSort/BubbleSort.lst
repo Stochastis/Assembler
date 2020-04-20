@@ -1503,15 +1503,16 @@
    627                              <1> %endrep
    628                              <1> %endmacro
      1                                      segment .data
-     2 00000000 2000000000000000FF-     numbersToSort   dq  32, -1, -2, 99, 1, 32, 0, 100     ;Create array of numbers to sort
-     2 00000009 FFFFFFFFFFFFFFFEFF-
-     2 00000012 FFFFFFFFFFFF630000-
-     2 0000001B 000000000001000000-
-     2 00000024 000000002000000000-
-     2 0000002D 000000000000000000-
-     2 00000036 000064000000000000-
-     2 0000003F 00                 
-     3 00000040 0800000000000000        listSize        dq  8                                   ;Set the size of the array
+     2 00000000 0A0000000000000009-     numbersToSort   dq  10, 9, 8, 7, 6, 5, 4, 3, 2, 1       ;Create array of numbers to sort
+     2 00000009 000000000000000800-
+     2 00000012 000000000000070000-
+     2 0000001B 000000000006000000-
+     2 00000024 000000000500000000-
+     2 0000002D 000000040000000000-
+     2 00000036 000003000000000000-
+     2 0000003F 000200000000000000-
+     2 00000048 0100000000000000   
+     3 00000050 0A00000000000000        listSize        dq  10                                   ;Set the size of the array
      4                                  
      5                                      segment .text
      6                                      global main                         ;Tell linker about main
@@ -1519,7 +1520,7 @@
      8                                  main:
      9                                  
     10 00000000 BF00000000                  mov rdi, 0                          ;Set rdi as error checker
-    11 00000005 488B3425[40000000]          mov rsi, [listSize]                 ;Move listSize value to rsi
+    11 00000005 488B3425[50000000]          mov rsi, [listSize]                 ;Move listSize value to rsi
     12 0000000D 486BF608                    imul rsi, 8                         ;Multiply listSize by 8
     13 00000011 4883EE08                    sub rsi, 8                          ;Subtract 8 from rsi for later comparison
     14 00000015 488D0425[00000000]          lea rax, [numbersToSort]            ;Move memory address of the arary to rax
@@ -1545,21 +1546,22 @@
     34 0000003E 4887D9                      xchg rbx, rcx
     35 00000041 48891C10                    mov [rax+rdx], rbx
     36 00000045 48894C1008                  mov [rax+rdx+8], rcx
-    37 0000004A E2E6                        loop checkCount
+    37 0000004A EBE6                        jmp checkCount
     38                                      
     39                                  notEnd:
     40                                  
     41 0000004C 4883C208                    add rdx, 8
-    42 00000050 E2D0                        loop compare
+    42 00000050 EBD0                        jmp compare
     43                                      
     44                                  end:
     45                                  
     46 00000052 4883FF00                    cmp rdi, 0
-    47 00000056 7408                        je finish
+    47 00000056 740C                        je finish
     48 00000058 4831FF                      xor rdi, rdi
     49 0000005B 4831D2                      xor rdx, rdx
-    50 0000005E E2C2                        loop compare
-    51                                      
-    52                                  finish:
-    53                                  
-    54 00000060 4831D2                      xor rdx, rdx
+    50 0000005E 4883EE08                    sub rsi, 8
+    51 00000062 EBBE                        jmp compare
+    52                                      
+    53                                  finish:
+    54                                  
+    55 00000064 4831D2                      xor rdx, rdx
